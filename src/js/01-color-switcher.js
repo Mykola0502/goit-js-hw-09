@@ -2,9 +2,12 @@ const startBtn = document.querySelector('[data-start]');
 const stopBtn = document.querySelector('[data-stop]');
 const bodyEl = document.querySelector('body');
 let timerId = null;
+const bodyColor = bodyEl.style.backgroundColor;
 
 startBtn.addEventListener('click', onStartBtnClick);
 stopBtn.addEventListener('click', onStopBtnClick);
+
+stopBtn.setAttribute('disabled', true);
 
 function onStartBtnClick() {
   timerId = setInterval(() => {
@@ -21,7 +24,7 @@ function onStartBtnClick() {
 
 function onStopBtnClick() {
   clearInterval(timerId);
-
+  bodyEl.setAttribute('style', `background-color: ${bodyColor}`);
   console.log(`Interval with id ${timerId} has stopped!`);
 
   startBtn.removeAttribute('disabled');
