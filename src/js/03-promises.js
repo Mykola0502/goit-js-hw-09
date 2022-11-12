@@ -2,12 +2,14 @@ import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 const formEl = document.querySelector('.form');
+const submitBtnEl = document.querySelector('button[type="submit"]');
 let userInput = {};
 
 formEl.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
+  submitBtnEl.disabled = true;
   const {
     elements: { delay, step, amount },
   } = event.target;
@@ -28,6 +30,9 @@ function startPromise(delay, step, amount) {
       .catch(onCreatePromiseError);
     delay += step;
   }
+  setTimeout(() => {
+    submitBtnEl.disabled = false;
+  }, delay);
 }
 
 function createPromise(position, delay) {
