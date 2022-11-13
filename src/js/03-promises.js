@@ -43,9 +43,11 @@ function createPromise(position, delay) {
       if (shouldResolve) {
         // Fulfill
         resolve({ position, delay });
+        // resolve(`✅ Fulfilled promise ${position} in ${delay}ms`);
       } else {
         // Reject
         reject({ position, delay });
+        // reject(`❌ Rejected promise ${position} in ${delay}ms`);
       }
     }, delay);
   });
@@ -60,3 +62,13 @@ function onCreatePromiseError({ position, delay }) {
   Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
   console.log(`❌ Rejected promise ${position} in ${delay}ms`);
 }
+
+// function onCreatePromiseSuccess(result) {
+//   Notiflix.Notify.success(result);
+//   console.log(result);
+// }
+
+// function onCreatePromiseError(error) {
+//   Notiflix.Notify.failure(error);
+//   console.log(error);
+// }
