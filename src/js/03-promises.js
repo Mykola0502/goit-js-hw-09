@@ -10,12 +10,16 @@ formEl.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
   submitBtnEl.disabled = true;
-  const {
-    elements: { delay, step, amount },
-  } = event.target;
-  userInput.delay = Number(delay.value);
-  userInput.step = Number(step.value);
-  userInput.amount = Number(amount.value);
+  const { delay, step, amount } = event.target.elements;
+  userInput.delay = delay.valueAsNumber;
+  userInput.step = step.valueAsNumber;
+  userInput.amount = amount.valueAsNumber;
+  // const {
+  //   elements: { delay, step, amount },
+  // } = event.target;
+  // userInput.delay = Number(delay.value);
+  // userInput.step = Number(step.value);
+  // userInput.amount = Number(amount.value);
 
   event.currentTarget.reset();
   console.log(userInput);
@@ -23,7 +27,7 @@ function onFormSubmit(event) {
 }
 
 function startPromise(delay, step, amount) {
-  console.log({ delay, step, amount });
+  // console.log({ delay, step, amount });
   for (let i = 1; i <= amount; i += 1) {
     createPromise(i, delay)
       .then(onCreatePromiseSuccess)
